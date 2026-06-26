@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Shop Mood - Home{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold">Trouvez votre Mood ✨</h1>
+        <p class="lead text-muted">Choisissez une ambiance pour découvrir nos parfums</p>
+        
+        <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap">
+            <a href="{{ path('app_home') }}" class="btn btn-outline-secondary {% if not currentMood %}active{% endif %}">Tout</a>
+            <a href="{{ path('app_home', {mood: 'happy'}) }}" class="btn btn-outline-warning {% if currentMood == 'happy' %}active{% endif %}">😊 Happy</a>
+            <a href="{{ path('app_home', {mood: 'relax'}) }}" class="btn btn-outline-success {% if currentMood == 'relax' %}active{% endif %}">🌿 Relax</a>
+            <a href="{{ path('app_home', {mood: 'energetic'}) }}" class="btn btn-outline-primary {% if currentMood == 'energetic' %}active{% endif %}">🔥 Energetic</a>
+            <a href="{{ path('app_home', {mood: 'romantic'}) }}" class="btn btn-outline-danger {% if currentMood == 'romantic' %}active{% endif %}">✨ Romantic</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mt-5">
+        {% for p in produits %}
+            <div class="col-md-4 col-sm-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                    {# Taswira mte3 el parfum #}
+                    <div style="height: 550px; overflow: hidden;">
+                        <img src="{{ asset('uploads/produits/' ~ p.image) }}" class="card-img-top w-100 h-100" style="object-fit: cover;" alt="{{ p.nom }}">
+                    </div>
+                    
+                    <div class="card-body text-center">
+                        <h5 class="card-title fw-bold">{{ p.nom }}</h5>
+                        <p class="text-muted mb-1 small">{{ p.type }}</p>
+                        <span class="badge bg-light text-dark mb-2 border">{{ p.mood|capitalize }}</span>
+                        <p class="text-primary fs-4 fw-bold">{{ p.prix }} DT</p>
+                        <a href="{{ path('cart_add', {id: p.id}) }}" class="btn btn-dark w-100">
+    Ajouter au panier 🛍️
+</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12 text-center py-5">
+                <p class="text-muted fs-5">Aucun parfum trouvé pour ce mood pour le moment.</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

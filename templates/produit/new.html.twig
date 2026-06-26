@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Produit{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-dark text-white py-3">
+                    <h3 class="card-title mb-0">✨ Ajouter un nouveau parfum</h3>
+                </div>
+                <div class="card-body p-4">
+                    
+                    {{ form_start(form) }}
+                        
+                        <div class="mb-3">
+                            {{ form_row(form.nom, {'attr': {'placeholder': 'Ex: Chanel Chance'}}) }}
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(form.prix) }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(form.mood) }}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            {{ form_row(form.type, {'attr': {'placeholder': 'Ex: Fruité, Boisé...'}}) }}
+                        </div>
+
+                        <div class="mb-4">
+                            {{ form_label(form.image, 'Photo du parfum', {'label_attr': {'class': 'form-label fw-bold'}}) }}
+                            {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+                            <small class="text-muted">Format: jpg, png (Max 2Mo)</small>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                ✅ Enregistrer le produit
+                            </button>
+                            <a href="{{ path('app_home') }}" class="btn btn-link text-secondary">
+                                Retour à la liste
+                            </a>
+                        </div>
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

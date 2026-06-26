@@ -1,0 +1,61 @@
+{# templates/cart/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="mb-4">Votre Panier 🛒</h2>
+
+    {# 1. N-declarou variable total jdida houni #}
+    {% set total = 0 %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+                <tr>
+                    {# item.produit.nom wallat mawjouda tawa khater l-controller mrigel #}
+                    <td><strong>{{ item.produit.nom }}</strong></td>
+                    <td>{{ item.produit.prix }} DT</td>
+                    <td>
+                        <span class="badge bg-secondary px-3 py-2">{{ item.quantite }}</span>
+                    </td>
+                    <td>{{ item.produit.prix * item.quantite }} DT</td>
+                    
+                    {# 2. Kol marra n-zidou el prix mta3 el ligne lel total #}
+                    {% set total = total + (item.produit.prix * item.quantite) %}
+                    
+                    <td>
+                        {# El route cart_remove lezem t-koun m-définniya fel Controller #}
+                        <a href="{{ path('cart_remove', {'id': item.produit.id}) }}" class="btn btn-sm btn-outline-danger">
+                            🗑️ Supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr class="table-light">
+                <td colspan="3" class="text-end"><strong>Total à payer :</strong></td>
+                {# 3. Tawa el variable "total" wallat m-calculiya s7i7a #}
+                <td colspan="2"><h4 class="text-primary fw-bold">{{ total }} DT</h4></td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a href="{{ path('app_home') }}" class="btn btn-secondary">Continuer mes achats</a>
+        <a href="{{ path('cart_validate') }}" class="btn btn-success">
+    Valider la commande
+</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}S'inscrire - Shop Mood{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="h3 mb-3 font-weight-normal text-center">Créer un compte</h1>
+
+            {{ form_start(registrationForm) }}
+                {{ form_row(registrationForm.email, { 'attr': {'class': 'form-control mb-3'} }) }}
+                {{ form_row(registrationForm.plainPassword, {
+                    'label': 'Mot de passe',
+                    'attr': {'class': 'form-control mb-3'}
+                }) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+
+               <button type="submit" class="btn btn-animated-light w-100 mt-4 shadow-sm">
+    S'inscrire <i class="fas fa-rocket ms-2"></i>
+</button>
+
+<style>
+    .btn-animated-light {
+        /* Alwen Champagne w Off-White */
+        background: linear-gradient(-45deg, #fdfbfb, #ebedee, #f3e7e9, #e3eeff);
+        background-size: 400% 400%;
+        animation: lightFlow 10s ease infinite;
+        
+        color: #444 !important; /* Ktaba ghameqa chwaya bech d-ban */
+        border: 1px solid #ddd !important;
+        padding: 15px !important;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-radius: 0px; /* Dima carré lel anاقة */
+        transition: all 0.3s ease;
+    }
+
+    /* Animation rzina w mouri7a lel 3in */
+    @keyframes lightFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .btn-animated-light:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05) !important;
+        border-color: #bbb !important;
+        color: #000 !important;
+    }
+</style>
+            {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

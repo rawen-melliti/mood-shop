@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2 style="text-align:center;">Perfumes for {{ mood }}</h2>
+
+<div class="products">
+{% for product in products %}
+    <div class="card">
+
+        <img src="/images/{{ product.image }}">
+
+        <div style="padding:15px;">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.price }} DT</p>
+        </div>
+
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}

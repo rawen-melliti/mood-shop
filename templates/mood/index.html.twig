@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="moods">
+
+    <div class="mood-card">
+        <a href="/shop/happy">😄 Happy</a>
+    </div>
+
+    <div class="mood-card">
+        <a href="/shop/confident">romantic</a>
+    </div>
+
+    <div class="mood-card">
+        <a href="/shop/sad">relax</a>
+    </div>
+
+    <div class="mood-card">
+        <a href="/shop/energetic">🔥 Energetic</a>
+    </div>
+
+</div>
+
+{% endblock %}
+<style>
+.moods {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 150px;
+}
+
+.mood-card {
+  padding: 40px;
+  background: #222;
+  border-radius: 15px;
+  transition: 0.3s;
+}
+
+.mood-card:hover {
+  transform: scale(1.1);
+  background: gold;
+}
+</style>
